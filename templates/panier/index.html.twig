@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PanierController!{% endblock %}
+
+{% block container %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div>
+    <h1>Mon panier ✅ Prix TTC ({{ products|length }}) </h1>
+
+</div>    
+    <div class="row">
+   <div class="table-responsive">
+        <table class="table mt-3">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prix HT</th>
+                    <th>TVA</th>
+                    <th>Prix TTC</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.price }}€</td>
+                        <td>{{ product.price * 0.2 }}€</td>
+                        <td>{{ product.price * 1.2 }}€</td>
+                        <td>{{ product.description }}</td>
+                
+                        <td>
+                            <a href="{{ path('app_product_show', { id: product.id }) }}" class="btn btn-primary" style="border-radius: 10px;">Afficher</a>
+                            <a href="{{ path('app_panier_remove', { id: product.id }) }}" class="btn btn-danger" style="border-radius: 10px;">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+<!-- Display the total amount -->
+<div class="text-end">
+    <h4>Montant total HT : {{ totalHT }}€</h4>
+    <h4>Montant total TVA : {{ totalTVA }}€</h4>
+    <h4>Montant total TTC : {{ TTCPrice }}€</h4>
+    <a href="{{ path('payment') }}" class="btn btn-success">Passer au paiement</a>
+</div>
+
+{% endblock %}

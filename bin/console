@@ -1,5 +1,5 @@
 #!/usr/bin/env php
-<?php
+<?php 
 
 use App\Kernel;
 use Symfony\Bundle\FrameworkBundle\Console\Application;

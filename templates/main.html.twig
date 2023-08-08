@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block container %}
+    <h1>Page d'accueil</h1>
+
+    {% if userExist == 1 %}
+    <p>Bonjour  {{username}}</p>
+
+     {% else %}
+
+     <p> Bienvenue à l'accueil </p>
+
+     {% endif %}
+
+{% endblock %}
+
+
+
+
+
